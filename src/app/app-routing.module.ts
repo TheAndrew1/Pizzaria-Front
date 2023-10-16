@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SaborListComponent } from './sabor/sabor-list/sabor-list.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: "sabores", component: SaborListComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
