@@ -13,11 +13,11 @@ export class SaborService {
   constructor() { }
 
   findById(id: number): Observable<Sabor> {
-    return this.http.get<Sabor>(this.API+"?id="+id);
+    return this.http.get<Sabor>(this.API + "?id=" + id);
   }
 
   findAll(): Observable<Sabor[]> {
-    return this.http.get<Sabor[]>(this.API+"/list");
+    return this.http.get<Sabor[]>(this.API + "/list");
   }
 
   create(sabor: Sabor): Observable<Sabor>{
@@ -25,10 +25,10 @@ export class SaborService {
   }
 
   edit(id: number, sabor: Sabor): Observable<Sabor>{
-    return this.http.put<Sabor>(this.API+"?id="+id, sabor);
+    return this.http.put<Sabor>(this.API + "?id=" + id, sabor);
   }
 
   delete(id: number): Observable<Sabor> {
-    return this.http.delete<Sabor>(this.API+"?id="+id);
+    return this.http.delete<Sabor>(this.API + "?id=" + id);
   }
 }
