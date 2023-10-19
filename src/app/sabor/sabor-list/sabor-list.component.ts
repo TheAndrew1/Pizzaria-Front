@@ -9,19 +9,29 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./sabor-list.component.scss']
 })
 export class SaborListComponent {
-  filter = new FormControl('', { nonNullable: true });
+  control = new FormControl('', { nonNullable: true });
   saborService = inject(SaborService);
 
   sabores: Array<Sabor> = new Array<Sabor>();
+  sabores$?: Array<Sabor>;
 
-  constructor(){
+  constructor() {
     this.findAll();
-  }
+	}
 
   findAll(){
     this.saborService.findAll().subscribe({
-      next: response => {this.sabores = response},
+      next: response => {this.sabores = response;
+                        this.sabores$ = this.sabores},
       error: erro => console.log(erro)
     });
+  }
+
+  filter(){
+    if(this.control.value == ""){
+      this.sabores$ = this.sabores
+    }else{
+      this.sabores$ = this.sabores.filter(sabor => sabor.nome.includes(this.control.value));
+    }
   }
 }

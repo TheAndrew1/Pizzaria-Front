@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SaborService {
-  API: string = "http://localhost:8080/api/sabor";
+  API: string = "http://localhost:8080/sabor";
   http = inject(HttpClient);
 
   constructor() { }

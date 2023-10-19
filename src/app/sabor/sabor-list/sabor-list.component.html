@@ -1,8 +1,7 @@
 <form>
 	<div class="mb-3 row">
-		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
 		<div class="col-xs-3 col-sm-auto">
-			<input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" />
+			<input id="table-filtering-search" class="form-control" type="text" autocomplete="off" [formControl]="control" name="busca" (ngModelChange)="filter()" placeholder="Buscar..."/>
 		</div>
 	</div>
 </form>
@@ -18,11 +17,11 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let sabor of sabores | async; index as i">
+		<tr *ngFor="let sabor of sabores$; index as i">
 			<th scope="row">{{ i + 1 }}</th>
-			<td><ngb-highlight [result]="sabor.name" [term]="filter.value"></ngb-highlight></td>
-			<td><ngb-highlight [result]="sabor.area | number" [term]="filter.value"></ngb-highlight></td>
-			<td><ngb-highlight [result]="sabor.population | number" [term]="filter.value"></ngb-highlight></td>
+			<td><ngb-highlight [result]="sabor.nome" [term]="control.value"></ngb-highlight></td>
+			<td>{{ sabor.descricao }}</td>
+			<td>{{ sabor.valor }}</td>
 		</tr>
 	</tbody>
 </table>

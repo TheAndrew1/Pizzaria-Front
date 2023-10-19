@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SaborListComponent } from './sabor/sabor-list/sabor-list.component';
 
 const routes: Routes = [
+  {path:"", redirectTo: "sabores", pathMatch: "full"},
   {path: "sabores", component: SaborListComponent}
 ];
 

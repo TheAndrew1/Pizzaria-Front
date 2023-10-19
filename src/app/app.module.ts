@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { SaborListComponent } from './sabor/sabor-list/sabor-list.component';
 import { SaborDetailsComponent } from './sabor/sabor-details/sabor-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
