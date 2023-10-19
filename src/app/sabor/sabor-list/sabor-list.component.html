@@ -1,7 +1,10 @@
 <form>
-	<div class="mb-3 row">
+	<div class="my-3 row justify-content-between">
 		<div class="col-xs-3 col-sm-auto">
 			<input id="table-filtering-search" class="form-control" type="text" autocomplete="off" [formControl]="control" name="busca" (ngModelChange)="filter()" placeholder="Buscar..."/>
+		</div>
+		<div class="col-xs-3 col-sm-auto">
+			<button type="button" class="btn btn-primary">Adicionar</button>
 		</div>
 	</div>
 </form>
@@ -13,7 +16,7 @@
 			<th scope="col">Sabor</th>
 			<th scope="col">Descrição</th>
 			<th scope="col">Valor</th>
-            <th scope="col">Opções</th>
+            <th scope="col" colspan="2">Opções</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,6 +25,10 @@
 			<td><ngb-highlight [result]="sabor.nome" [term]="control.value"></ngb-highlight></td>
 			<td>{{ sabor.descricao }}</td>
 			<td>{{ sabor.valor }}</td>
+			<td class="row justify-content-around">
+				<button type="button" class="btn btn-info col-3">Editar</button>
+				<button type="button" class="btn btn-danger col-3">Excluir</button>
+			</td>
 		</tr>
 	</tbody>
 </table>

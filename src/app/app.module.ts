@@ -8,12 +8,16 @@ import { SaborListComponent } from './sabor/sabor-list/sabor-list.component';
 import { SaborDetailsComponent } from './sabor/sabor-details/sabor-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './layout/header/header.component';
+import { IndexComponent } from './layout/index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SaborListComponent,
-    SaborDetailsComponent
+    SaborDetailsComponent,
+    HeaderComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
