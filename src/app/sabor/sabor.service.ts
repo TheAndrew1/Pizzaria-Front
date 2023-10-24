@@ -12,23 +12,23 @@ export class SaborService {
 
   constructor() { }
 
-  findById(id: number): Observable<Sabor> {
+  async findById(id: number): Promise<Observable<Sabor>> {
     return this.http.get<Sabor>(this.API + "?id=" + id);
   }
 
-  findAll(): Observable<Sabor[]> {
+  async findAll(): Promise<Observable<Sabor[]>> {
     return this.http.get<Sabor[]>(this.API + "/list");
   }
 
-  create(sabor: Sabor): Observable<Sabor>{
+  async create(sabor: Sabor): Promise<Observable<Sabor>>{
     return this.http.post<Sabor>(this.API, sabor);
   }
 
-  edit(id: number, sabor: Sabor): Observable<Sabor>{
+  async edit(id: number, sabor: Sabor): Promise<Observable<Sabor>>{
     return this.http.put<Sabor>(this.API + "?id=" + id, sabor);
   }
 
-  delete(id: number): Observable<Sabor> {
+  async delete(id: number): Promise<Observable<Sabor>> {
     return this.http.delete<Sabor>(this.API + "?id=" + id);
   }
 }

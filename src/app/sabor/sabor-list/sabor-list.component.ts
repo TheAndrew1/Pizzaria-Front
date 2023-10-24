@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './sabor-list.component.html',
   styleUrls: ['./sabor-list.component.scss']
 })
+
 export class SaborListComponent {
   control = new FormControl('', { nonNullable: true });
   saborService = inject(SaborService);
@@ -20,11 +21,11 @@ export class SaborListComponent {
 	}
 
   findAll(){
-    this.saborService.findAll().subscribe({
+    this.saborService.findAll().then(promise => promise.subscribe({
       next: response => {this.sabores = response;
                         this.sabores$ = this.sabores},
       error: erro => console.log(erro)
-    });
+    }));
   }
 
   filter(){

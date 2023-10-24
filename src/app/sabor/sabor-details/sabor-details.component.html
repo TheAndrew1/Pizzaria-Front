@@ -1,1 +1,18 @@
-<p>sabor-details works!</p>
+<form class="container my-3 col-4">
+    <h2 *ngIf="tipo == 'new'">Adicionar sabor</h2>
+    <h2 *ngIf="tipo == 'edit'">Editar sabor</h2>
+
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="sabor.nome" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição:</label>
+        <input type="text" class="form-control" id="descricao" name="descricao" [(ngModel)]="sabor.descricao" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="valor" class="form-label">Preço:</label>
+        <input type="number" class="form-control" id="valor" name="valor" [(ngModel)]="sabor.valor" autocomplete="off">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+  </form>
