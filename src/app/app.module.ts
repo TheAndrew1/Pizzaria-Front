@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './layout/header/header.component';
 import { IndexComponent } from './layout/index/index.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { IndexComponent } from './layout/index/index.component';
     SaborListComponent,
     SaborDetailsComponent,
     HeaderComponent,
-    IndexComponent
+    IndexComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
