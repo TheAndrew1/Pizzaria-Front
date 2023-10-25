@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { SaborService } from '../sabor.service';
 import { Sabor } from '../saborModel';
 import { FormControl } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sabor-list',
@@ -11,21 +12,35 @@ import { FormControl } from '@angular/forms';
 
 export class SaborListComponent {
   control = new FormControl('', { nonNullable: true });
+  modalService = inject(NgbModal);
+
   saborService = inject(SaborService);
 
   sabores: Array<Sabor> = new Array<Sabor>();
   sabores$?: Array<Sabor>;
 
+  saborSelecionado!: Sabor;
+
   constructor() {
     this.findAll();
 	}
 
-  findAll(){
-    this.saborService.findAll().then(promise => promise.subscribe({
+  async findAll(){
+    await this.saborService.findAll().then(promise => promise.subscribe({
       next: response => {this.sabores = response;
                         this.sabores$ = this.sabores},
       error: erro => console.log(erro)
     }));
+  }
+
+  async delete(id: number){
+    await this.saborService.delete(id).then(promise => promise.subscribe({
+      next: response => {
+        this.findAll();
+      },
+      error: erro => console.log(erro)
+    }));
+    this.modalService.dismissAll();
   }
 
   filter(){
@@ -35,4 +50,10 @@ export class SaborListComponent {
       this.sabores$ = this.sabores.filter(sabor => sabor.nome.includes(this.control.value));
     }
   }
+
+  openModal(content: any, sabor: Sabor) {
+    this.saborSelecionado = sabor;
+
+		this.modalService.open(content, { centered: true });
+	}
 }

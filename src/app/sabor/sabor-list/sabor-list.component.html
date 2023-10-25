@@ -27,8 +27,22 @@
 			<td>{{ sabor.valor }}</td>
 			<td class="row justify-content-around">
 				<button type="button" class="btn btn-info col-3" [routerLink]="['/sabores/form']" [queryParams]="{id: sabor.id, type: 'edit'}">Editar</button>
-				<button type="button" class="btn btn-danger col-3">Excluir</button>
+				<button type="button" class="btn btn-danger col-3" (click)="openModal(content, sabor)">Excluir</button>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Excluir sabor</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>Tem certeza que deseja excluir o sabor <strong><em>{{ saborSelecionado.nome }}</em></strong> ?</p>
+	</div>
+	<div class="modal-footer justify-content-between">
+		<button type="button" class="btn btn-outline-danger col-2" (click)="delete(saborSelecionado.id)">Excluir</button>
+		<button type="button" class="btn btn-outline-secondary col-2" (click)="modal.close('Close click')">Fechar</button>
+	</div>
+</ng-template>

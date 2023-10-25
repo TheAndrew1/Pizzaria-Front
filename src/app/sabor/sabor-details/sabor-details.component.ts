@@ -38,12 +38,12 @@ export class SaborDetailsComponent {
 
   async salvar(){
     if(this.tipo == "new"){
-       this.saborService.create(this.sabor).then(promise => promise.subscribe({
+       await this.saborService.create(this.sabor).then(promise => promise.subscribe({
         next: response => this.sabor = response,
         error: erro => console.log(erro)
       }));
     }else{
-      this.saborService.edit(this.id, this.sabor).then(promise => promise.subscribe({
+      await this.saborService.edit(this.id, this.sabor).then(promise => promise.subscribe({
         next: response => this.sabor = response,
         error: erro => console.log(erro)
       }));
