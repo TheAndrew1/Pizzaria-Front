@@ -1,0 +1,3 @@
+export enum Situacao{
+    CANCELADO, PREPARO, ENTREGA, FINALIZADO
+}
