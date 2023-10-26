@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { SaborService } from '../sabor.service';
-import { Sabor } from '../saborModel';
+import { SaborService } from '../../../services/sabor/sabor.service';
+import { Sabor } from '../../../models/saborModel';
 import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -34,13 +34,16 @@ export class SaborListComponent {
   }
 
   async delete(id: number){
-    await this.saborService.delete(id).then(promise => promise.subscribe({
-      next: response => {
-        this.findAll();
-      },
-      error: erro => console.log(erro)
-    }));
-    this.modalService.dismissAll();
+    await this.saborService.delete(id)
+      .then(promise => promise.subscribe({
+        next: response => {
+          this.findAll();
+        },
+        error: erro => console.log(erro)
+      }))
+      .then(() => {
+        this.modalService.dismissAll();
+      })
   }
 
   filter(){

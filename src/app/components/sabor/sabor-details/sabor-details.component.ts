@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { Sabor } from '../saborModel';
+import { Sabor } from '../../../models/saborModel';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SaborService } from '../sabor.service';
+import { SaborService } from '../../../services/sabor/sabor.service';
 
 @Component({
   selector: 'app-sabor-details',
@@ -41,14 +41,18 @@ export class SaborDetailsComponent {
        await this.saborService.create(this.sabor).then(promise => promise.subscribe({
         next: response => this.sabor = response,
         error: erro => console.log(erro)
-      }));
+      }))
+      .then(() => {
+        this.router.navigate(["/sabores"]);
+      })
     }else{
       await this.saborService.edit(this.id, this.sabor).then(promise => promise.subscribe({
         next: response => this.sabor = response,
         error: erro => console.log(erro)
-      }));
+      }))
+      .then(() => {
+        this.router.navigate(["/sabores"]);
+      })
     }
-
-    this.router.navigate(["/sabores"]);
   }
 }

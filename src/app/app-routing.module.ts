@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SaborListComponent } from './sabor/sabor-list/sabor-list.component';
-import { SaborDetailsComponent } from './sabor/sabor-details/sabor-details.component';
+import { SaborListComponent } from './components/sabor/sabor-list/sabor-list.component';
+import { SaborDetailsComponent } from './components/sabor/sabor-details/sabor-details.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "sabores", pathMatch: "full"},
