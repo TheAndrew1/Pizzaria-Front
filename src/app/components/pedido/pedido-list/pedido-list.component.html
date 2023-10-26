@@ -4,7 +4,7 @@
 			<input id="table-filtering-search" class="form-control" type="text" autocomplete="off" [formControl]="control" name="busca" (ngModelChange)="filter()" placeholder="Buscar..."/>
 		</div>
 		<div class="col-xs-3 col-sm-auto">
-			<button type="button" class="btn btn-primary" [routerLink]="['/pedidos/form']" [queryParams]="{type: 'new'}">Adicionar</button>
+			<button type="button" class="btn btn-primary" [routerLink]="['/pedidos/form']" [queryParams]="{type: 'new'}">Novo</button>
 		</div>
 	</div>
 </form>
@@ -25,14 +25,14 @@
 		<tr *ngFor="let pedido of pedidos$; index as i">
 			<th scope="row">{{ i + 1 }}</th>
             <td><ngb-highlight [result]="pedido.id | number" [term]="control.value"></ngb-highlight></td>
-            <td *ngIf="pedido.entrega">Entrega</td>
-            <td *ngIf="!pedido.entrega">Retirada</td>
+            <td *ngIf="pedido.entrega">ENTREGA</td>
+            <td *ngIf="!pedido.entrega">RETIRADA</td>
 			<td>{{ pedido.situacao }}</td>
             <td>{{ pedido.pagamento }}</td>
-			<td>{{ pedido.valor }}</td>
+			<td>R$ {{ pedido.valor }}</td>
 			<td class="row justify-content-around">
 				<button type="button" class="btn btn-info col-3" [routerLink]="['/pedidos/form']" [queryParams]="{id: pedido.id, type: 'edit'}">Editar</button>
-				<button type="button" class="btn btn-danger col-3" (click)="openModal(content, pedido)">Excluir</button>
+				<button type="button" class="btn btn-danger col-3" (click)="openModal(content, pedido)">Cancelar</button>
 			</td>
 		</tr>
 	</tbody>
@@ -40,11 +40,11 @@
 
 <ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title">Excluir pedido</h4>
+		<h4 class="modal-title">Cancelar pedido</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-		<p>Tem certeza que deseja excluir o pedido de número <strong><em>{{ pedidoSelecionado.id }}</em></strong> ?</p>
+		<p>Tem certeza que deseja cancelar o pedido de número <strong><em>{{ pedidoSelecionado.id }}</em></strong> ?</p>
 	</div>
 	<div class="modal-footer justify-content-between">
 		<button type="button" class="btn btn-outline-danger col-2" (click)="delete(pedidoSelecionado.id)">Excluir</button>

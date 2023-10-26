@@ -1,1 +1,33 @@
-<p>pedido-details works!</p>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<form class="container my-3 col-4">
+    <h2 *ngIf="tipo == 'new'">Realizar pedido</h2>
+    <h2 *ngIf="tipo == 'edit'">Editar pedido</h2>
+
+    <div class="mb-3">
+        <h5 for="nome" class="form-label">Itens do pedido:</h5>
+        
+        <button type="button" class="btn btn-info">
+            <span class="material-symbols-outlined">add</span>
+        </button>
+    </div>
+
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="" id="entrega" [(ngModel)]="pedido.entrega" name="entrega">
+        <label class="form-check-label" for="entrega">Necessita entrega ?</label>
+    </div>
+    <div class="mb-3">
+        <label for="valor" class="form-label">Valor do pedido:</label>
+        <p>R$ {{ pedido.valor }}</p>
+    </div>
+    <div class="mb-3">
+        <label for="pagamento" class="form-label">Selecione a forma de pagamento:</label>
+        <select class="form-select" id="pagamento" aria-label="Forma de pagamento" [(ngModel)]="pedido.pagamento" name="pagamento">
+            <option value=0>Dinheiro</option>
+            <option value=1>Crédito</option>
+            <option value=2>Debito</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+</form>

@@ -9,8 +9,8 @@ import { PedidoListComponent } from './components/pedido/pedido-list/pedido-list
 import { PedidoDetailsComponent } from './components/pedido/pedido-details/pedido-details.component';
 
 const routes: Routes = [
-  {path:"", redirectTo: "index", pathMatch: "full"},
-  {path: "index", component: IndexComponent},
+  {path:"", redirectTo: "home", pathMatch: "full"},
+  {path: "home", component: IndexComponent},
   {path: "sabores", component: SaborListComponent},
   {path: "sabores/form", component: SaborDetailsComponent},
   {path: "produtos", component: ProdutoListComponent},

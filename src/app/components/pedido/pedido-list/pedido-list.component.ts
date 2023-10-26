@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Pedido } from 'src/app/models/pedidoModel';
-import { Situacao } from 'src/app/models/situacaoEnum';
 import { PedidoService } from 'src/app/services/pedido/pedido.service';
 
 @Component({
@@ -55,7 +54,7 @@ export class PedidoListComponent {
   }
 
   filterPedidosAbertos(pedidos: Pedido[]): Pedido[]{
-    return pedidos.filter(pedido => pedido.situacao != Situacao.CANCELADO);
+    return pedidos.filter(pedido => pedido.situacao != 0);
   }
 
   openModal(content: any, pedido: Pedido) {
