@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { IndexComponent } from './components/layout/index/index.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
+import { ProdutoListComponent } from './components/produto/produto-list/produto-list.component';
+import { ProdutoDetailsComponent } from './components/produto/produto-details/produto-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FooterComponent } from './components/layout/footer/footer.component';
     SaborDetailsComponent,
     HeaderComponent,
     IndexComponent,
-    FooterComponent
+    FooterComponent,
+    ProdutoListComponent,
+    ProdutoDetailsComponent
   ],
   imports: [
     BrowserModule,
