@@ -13,6 +13,8 @@ import { IndexComponent } from './components/layout/index/index.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { ProdutoListComponent } from './components/produto/produto-list/produto-list.component';
 import { ProdutoDetailsComponent } from './components/produto/produto-details/produto-details.component';
+import { PedidoListComponent } from './components/pedido/pedido-list/pedido-list.component';
+import { PedidoDetailsComponent } from './components/pedido/pedido-details/pedido-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ProdutoDetailsComponent } from './components/produto/produto-details/pr
     IndexComponent,
     FooterComponent,
     ProdutoListComponent,
-    ProdutoDetailsComponent
+    ProdutoDetailsComponent,
+    PedidoListComponent,
+    PedidoDetailsComponent
   ],
   imports: [
     BrowserModule,

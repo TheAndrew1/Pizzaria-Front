@@ -16,12 +16,4 @@ export class Pedido{
     endereco!: Endereco;
     funcionario!: Funcionario;
     produtos!: Array<Produto>;
-
-    constructor(){
-        this.data = new Date();
-        this.cliente = new Cliente();
-        this.endereco = new Endereco();
-        this.funcionario = new Funcionario();
-        this.produtos = new Array<Produto>();
-    }
 }

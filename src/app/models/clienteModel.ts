@@ -7,8 +7,4 @@ export class Cliente{
     email!: string;
     senha!: string;
     enderecos!: Array<Endereco>;
-
-    constructor(){
-        this.enderecos = new Array<Endereco>();
-    }
 }
