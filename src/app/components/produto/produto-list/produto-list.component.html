@@ -4,10 +4,45 @@
 			<input id="table-filtering-search" class="form-control" type="text" autocomplete="off" [formControl]="control" name="busca" (ngModelChange)="filter()" placeholder="Buscar..."/>
 		</div>
 		<div class="col-xs-3 col-sm-auto">
-			<button type="button" class="btn btn-primary" [routerLink]="['/produtos/form']" [queryParams]="{type: 'new'}">Adicionar</button>
+			<button type="button" class="btn btn-primary" [routerLink]="['/produtos/form']" [queryParams]="{type: 'new'}" *ngIf="!pedido">Adicionar</button>
 		</div>
 	</div>
 </form>
+
+<table class="table table-striped" *ngIf="pedido">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Produto</th>
+			<th scope="col">Tamanho</th>
+			<th scope="col">Sabores</th>
+			<th scope="col">Obserções</th>
+			<th scope="col">Valor</th>
+            <th scope="col">Opções</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngIf="pedido">
+			<th scope="row">-</th>
+			<td>Pizza</td>
+			<td class="row justify-content-start">
+				<select class="form-select col-3 w-50">
+					<option disabled selected></option>
+					<option value=0>P</option>
+					<option value=1>M</option>
+					<option value=2>G</option>
+					<option value=3>GG</option>
+				</select>
+			</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<td class="row justify-content-center">
+				<button type="button" class="btn btn-outline-primary">Selecionar</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
 
 <table class="table table-striped">
 	<thead>
@@ -16,7 +51,7 @@
 			<th scope="col">Produto</th>
 			<th scope="col">Descrição</th>
 			<th scope="col">Valor</th>
-            <th scope="col" colspan="2">Opções</th>
+            <th scope="col">Opções</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,9 +60,12 @@
 			<td><ngb-highlight [result]="produto.nome" [term]="control.value"></ngb-highlight></td>
 			<td>{{ produto.observacao }}</td>
 			<td>{{ produto.valor }}</td>
-			<td class="row justify-content-around">
+			<td class="row justify-content-around" *ngIf="!pedido">
 				<button type="button" class="btn btn-info col-3" [routerLink]="['/produtos/form']" [queryParams]="{id: produto.id, type: 'edit'}">Editar</button>
 				<button type="button" class="btn btn-danger col-3" (click)="openModal(content, produto)">Excluir</button>
+			</td>
+			<td class="row justify-content-center" *ngIf="pedido">
+				<button type="button" class="btn btn-outline-primary">Selecionar</button>
 			</td>
 		</tr>
 	</tbody>

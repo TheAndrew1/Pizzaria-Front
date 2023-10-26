@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Produto } from 'src/app/models/produtoModel';
@@ -15,10 +15,13 @@ export class ProdutoListComponent {
 
   produtoService = inject(ProdutoService);
 
+  @Input() pedido!: boolean;
+
   produtos: Array<Produto> = new Array<Produto>();
   produtos$?: Array<Produto>;
 
   produtoSelecionado!: Produto;
+  pizza!: Produto;
 
   constructor() {
     this.findAll();
@@ -57,8 +60,10 @@ export class ProdutoListComponent {
     return produtos.filter(produto => produto.tamanho == null);
   }
 
-  openModal(content: any, produto: Produto) {
-    this.produtoSelecionado = produto;
+  openModal(content: any, produto?: Produto) {
+    if(produto){
+      this.produtoSelecionado = produto;
+    }
 
 		this.modalService.open(content, { centered: true });
 	}

@@ -41,6 +41,6 @@ export class ProdutosPedidoListComponent {
       this.produtoSelecionado = produto;
     }
 
-		this.modalService.open(content, { centered: true, size: 'xl' });
+		this.modalService.open(content, { centered: true, size: 'xl', scrollable: true });
 	}
 }
