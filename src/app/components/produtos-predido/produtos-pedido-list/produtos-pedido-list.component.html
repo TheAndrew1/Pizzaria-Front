@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<table class="table table-striped mb-3">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Produto</th>
+			<th scope="col">Valor</th>
+            <th scope="col">Opções</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let produto of pedido.produtos; index as i">
+			<th scope="row">{{ i + 1 }}</th>
+			<td><ngb-highlight [result]="produto.nome" [term]="control.value"></ngb-highlight></td>
+			<td>{{ produto.valor }}</td>
+			<td class="row justify-content-around">
+				<button type="button" class="btn btn-danger col-5" (click)="openModal(deleteModal, produto)">
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<form>
+	<div class="my-3 row justify-content-start">
+		<div class="col-xs-3 col-sm-auto">
+			<button type="button" class="btn btn-info" (click)="openModal(addModal)">
+                <span class="material-symbols-outlined">add</span>
+            </button>
+		</div>
+	</div>
+</form>
+
+<ng-template #deleteModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Remover produto</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>Tem certeza que deseja remover o produto <strong><em>{{ produtoSelecionado.nome }}</em></strong> ?</p>
+	</div>
+	<div class="modal-footer justify-content-between">
+		<button type="button" class="btn btn-outline-danger col-2" (click)="delete(produtoSelecionado.id)">Excluir</button>
+		<button type="button" class="btn btn-outline-secondary col-2" (click)="modal.close('Close click')">Fechar</button>
+	</div>
+</ng-template>
+
+<ng-template #addModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Adicionar produto</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+	</div>
+	<div class="modal-footer">
+	</div>
+</ng-template>
