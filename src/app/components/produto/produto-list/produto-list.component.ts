@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Produto } from 'src/app/models/produtoModel';
@@ -16,6 +16,7 @@ export class ProdutoListComponent {
   produtoService = inject(ProdutoService);
 
   @Input() pedido!: boolean;
+  @Output() retorno = new EventEmitter<Produto>();
 
   produtos: Array<Produto> = new Array<Produto>();
   produtos$?: Array<Produto>;
@@ -58,6 +59,10 @@ export class ProdutoListComponent {
 
   filterProducts(produtos: Produto[]): Produto[]{
     return produtos.filter(produto => produto.tamanho == null);
+  }
+
+  select(produto: Produto){
+    this.retorno.emit(produto);
   }
 
   openModal(content: any, produto?: Produto) {

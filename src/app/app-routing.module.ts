@@ -7,10 +7,14 @@ import { ProdutoDetailsComponent } from './components/produto/produto-details/pr
 import { IndexComponent } from './components/layout/index/index.component';
 import { PedidoListComponent } from './components/pedido/pedido-list/pedido-list.component';
 import { PedidoDetailsComponent } from './components/pedido/pedido-details/pedido-details.component';
+import { LoginComponent } from './components/sistema/login/login.component';
+import { CadastroComponent } from './components/sistema/cadastro/cadastro.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "home", pathMatch: "full"},
   {path: "home", component: IndexComponent},
+  {path: "login", component: LoginComponent},
+  {path: "cadastro", component: CadastroComponent},
   {path: "sabores", component: SaborListComponent},
   {path: "sabores/form", component: SaborDetailsComponent},
   {path: "produtos", component: ProdutoListComponent},

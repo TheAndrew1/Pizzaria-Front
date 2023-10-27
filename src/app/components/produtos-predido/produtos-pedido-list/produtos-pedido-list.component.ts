@@ -43,4 +43,8 @@ export class ProdutosPedidoListComponent {
 
 		this.modalService.open(content, { centered: true, size: 'xl', scrollable: true });
 	}
+
+  adicionarItem(produto: Produto){
+    this.pedido.produtos.push(produto)
+  }
 }

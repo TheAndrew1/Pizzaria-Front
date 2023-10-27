@@ -54,7 +54,7 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-		<app-produto-list [pedido]="true"></app-produto-list>
+		<app-produto-list [pedido]="true" (retorno)="adicionarItem($event)"></app-produto-list>
 	</div>
 	<div class="modal-footer">
 	</div>

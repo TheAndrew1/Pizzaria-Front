@@ -35,8 +35,10 @@
 				</select>
 			</td>
 			<td>-</td>
-			<td>-</td>
-			<td>-</td>
+			<td>
+				<input class="form-control" type="text">
+			</td>
+			<td>R$ -</td>
 			<td class="row justify-content-center">
 				<button type="button" class="btn btn-outline-primary">Selecionar</button>
 			</td>
@@ -65,7 +67,7 @@
 				<button type="button" class="btn btn-danger col-3" (click)="openModal(content, produto)">Excluir</button>
 			</td>
 			<td class="row justify-content-center" *ngIf="pedido">
-				<button type="button" class="btn btn-outline-primary">Selecionar</button>
+				<button type="button" class="btn btn-outline-primary" (click)="select(produto)">Selecionar</button>
 			</td>
 		</tr>
 	</tbody>
