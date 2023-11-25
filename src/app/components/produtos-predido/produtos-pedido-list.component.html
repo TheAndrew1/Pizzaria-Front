@@ -43,7 +43,7 @@
 		<p>Tem certeza que deseja remover o produto <strong><em>{{ produtoSelecionado.nome }}</em></strong> ?</p>
 	</div>
 	<div class="modal-footer justify-content-between">
-		<button type="button" class="btn btn-outline-danger col-2" (click)="remove()">Remover</button>
+		<button type="button" class="btn btn-outline-danger col-2" (click)="removeItem()">Remover</button>
 		<button type="button" class="btn btn-outline-secondary col-2" (click)="modal.close('Close click')">Fechar</button>
 	</div>
 </ng-template>
@@ -54,7 +54,7 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-		<app-produto-list [pedido]="true" (retorno)="adicionarItem($event)"></app-produto-list>
+		<app-produto-list [pedido]="true" (retorno)="addItem($event)"></app-produto-list>
 	</div>
 	<div class="modal-footer">
 	</div>

@@ -25,10 +25,6 @@ export class ProdutosPedidoListComponent {
     
 	}
 
-  remove(){
-    this.pedido.produtos.splice(this.idSelecionado, 1)
-  }
-
   openModal(content: any, produto?: Produto, id?: number) {
     if(produto && id){
       this.produtoSelecionado = produto;
@@ -38,7 +34,21 @@ export class ProdutosPedidoListComponent {
 		this.modalService.open(content, { centered: true, size: 'xl', scrollable: true });
 	}
 
-  adicionarItem(produto: Produto){
-    this.pedido.produtos.push(produto)
+  addItem(produto: Produto){
+    this.pedido.produtos.push(produto);
+    this.pedido.valor = this.sumProdutos();
+  }
+
+  removeItem(){
+    this.pedido.produtos.splice(this.idSelecionado, 1);
+    this.pedido.valor = this.sumProdutos();
+    this.modalService.dismissAll();
+  }
+
+  sumProdutos(): number{
+    let soma = 0 as number;
+    this.pedido.produtos.forEach(produto => soma += produto.valor);
+
+    return soma;
   }
 }
