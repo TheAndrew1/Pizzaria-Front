@@ -63,6 +63,7 @@ export class ProdutoListComponent {
 
   select(produto: Produto){
     this.retorno.emit(produto);
+    this.modalService.dismissAll();
   }
 
   openModal(content: any, produto?: Produto) {
