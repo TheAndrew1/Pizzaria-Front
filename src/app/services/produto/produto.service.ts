@@ -12,23 +12,23 @@ export class ProdutoService {
 
   constructor() { }
 
-  async findById(id: number): Promise<Observable<Produto>> {
+  findById(id: number): Observable<Produto> {
     return this.http.get<Produto>(this.API + "?id=" + id);
   }
 
-  async findAll(): Promise<Observable<Produto[]>> {
+  findAll(): Observable<Produto[]> {
     return this.http.get<Produto[]>(this.API + "/list");
   }
 
-  async create(produto: Produto): Promise<Observable<Produto>>{
+  create(produto: Produto): Observable<Produto> {
     return this.http.post<Produto>(this.API, produto);
   }
 
-  async edit(id: number, produto: Produto): Promise<Observable<Produto>>{
+  edit(id: number, produto: Produto): Observable<Produto> {
     return this.http.put<Produto>(this.API + "?id=" + id, produto);
   }
 
-  async delete(id: number): Promise<Observable<Produto>> {
+  delete(id: number): Observable<Produto> {
     return this.http.delete<Produto>(this.API + "?id=" + id);
   }
 }

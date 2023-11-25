@@ -29,29 +29,27 @@ export class ProdutoDetailsComponent {
   }
 
   findById(id: number){
-    this.produtoService.findById(id).then(promise => promise.subscribe({
+    this.produtoService.findById(id).subscribe({
       next: response => this.produto = response,
       error: erro => console.log(erro)
-    }));
+    });
   }
 
-  async salvar(){
+  salvar(){
     if(this.tipo == "new"){
-       await this.produtoService.create(this.produto).then(promise => promise.subscribe({
+       this.produtoService.create(this.produto).subscribe({
         next: response => this.produto = response,
         error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.router.navigate(["/produtos"]);
       })
+
+      this.router.navigate(["/produtos"]);
     }else{
-      await this.produtoService.edit(this.id, this.produto).then(promise => promise.subscribe({
+      this.produtoService.edit(this.id, this.produto).subscribe({
         next: response => this.produto = response,
         error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.router.navigate(["/produtos"]);
       })
+      
+      this.router.navigate(["/produtos"]);
     }
   }
 }

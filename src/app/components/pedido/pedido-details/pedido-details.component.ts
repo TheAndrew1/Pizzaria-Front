@@ -29,29 +29,27 @@ export class PedidoDetailsComponent {
   }
 
   findById(id: number){
-    this.pedidoService.findById(id).then(promise => promise.subscribe({
+    this.pedidoService.findById(id).subscribe({
       next: response => this.pedido = response,
       error: erro => console.log(erro)
-    }));
+    });
   }
 
-  async salvar(){
+  salvar(){
     if(this.tipo == "new"){
-        await this.pedidoService.create(this.pedido).then(promise => promise.subscribe({
+        this.pedidoService.create(this.pedido).subscribe({
         next: response => this.pedido = response,
         error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.router.navigate(["/pedidos"]);
       })
+      
+      this.router.navigate(["/pedidos"]);
     }else{
-      await this.pedidoService.edit(this.id, this.pedido).then(promise => promise.subscribe({
+      this.pedidoService.edit(this.id, this.pedido).subscribe({
         next: response => this.pedido = response,
         error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.router.navigate(["/pedidos"]);
       })
+      
+      this.router.navigate(["/pedidos"]);
     }
   }
 }

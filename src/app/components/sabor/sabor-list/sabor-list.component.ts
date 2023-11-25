@@ -25,25 +25,24 @@ export class SaborListComponent {
     this.findAll();
 	}
 
-  async findAll(){
-    await this.saborService.findAll().then(promise => promise.subscribe({
+  findAll(){
+    this.saborService.findAll().subscribe({
       next: response => {this.sabores = response;
                         this.sabores$ = this.sabores},
       error: erro => console.log(erro)
-    }));
+    });
   }
 
-  async delete(id: number){
-    await this.saborService.delete(id)
-      .then(promise => promise.subscribe({
+  delete(id: number){
+    this.saborService.delete(id)
+      .subscribe({
         next: response => {
           this.findAll();
         },
         error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.modalService.dismissAll();
       })
+
+    this.modalService.dismissAll();
   }
 
   filter(){

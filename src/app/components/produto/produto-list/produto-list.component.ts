@@ -28,25 +28,24 @@ export class ProdutoListComponent {
     this.findAll();
 	}
 
-  async findAll(){
-    await this.produtoService.findAll().then(promise => promise.subscribe({
+  findAll(){
+    this.produtoService.findAll().subscribe({
       next: response => {this.produtos = this.filterProducts(response);
                         this.produtos$ = this.produtos},
       error: erro => console.log(erro)
-    }));
+    });
   }
 
-  async delete(id: number){
-    await this.produtoService.delete(id)
-      .then(promise => promise.subscribe({
+  delete(id: number){
+    this.produtoService.delete(id)
+      .subscribe({
         next: response => {
           this.findAll();
         },
         error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.modalService.dismissAll();
       })
+        
+    this.modalService.dismissAll();
   }
 
   filter(){

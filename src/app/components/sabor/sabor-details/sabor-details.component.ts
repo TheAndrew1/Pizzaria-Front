@@ -30,29 +30,27 @@ export class SaborDetailsComponent {
   }
 
   findById(id: number){
-    this.saborService.findById(id).then(promise => promise.subscribe({
+    this.saborService.findById(id).subscribe({
       next: response => this.sabor = response,
       error: erro => console.log(erro)
-    }));
+    });
   }
 
-  async salvar(){
+  salvar(){
     if(this.tipo == "new"){
-       await this.saborService.create(this.sabor).then(promise => promise.subscribe({
+       this.saborService.create(this.sabor).subscribe({
         next: response => this.sabor = response,
         error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.router.navigate(["/sabores"]);
       })
+        
+      this.router.navigate(["/sabores"]);
     }else{
-      await this.saborService.edit(this.id, this.sabor).then(promise => promise.subscribe({
+      this.saborService.edit(this.id, this.sabor).subscribe({
         next: response => this.sabor = response,
         error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.router.navigate(["/sabores"]);
       })
+        
+      this.router.navigate(["/sabores"]);
     }
   }
 }

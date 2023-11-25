@@ -12,23 +12,23 @@ export class PedidoService {
 
   constructor() { }
 
-  async findById(id: number): Promise<Observable<Pedido>> {
+  findById(id: number): Observable<Pedido> {
     return this.http.get<Pedido>(this.API + "?id=" + id);
   }
 
-  async findAll(): Promise<Observable<Pedido[]>> {
+  findAll(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.API + "/list");
   }
 
-  async create(pedido: Pedido): Promise<Observable<Pedido>>{
+  create(pedido: Pedido): Observable<Pedido>{
     return this.http.post<Pedido>(this.API, pedido);
   }
 
-  async edit(id: number, pedido: Pedido): Promise<Observable<Pedido>>{
+  edit(id: number, pedido: Pedido): Observable<Pedido>{
     return this.http.put<Pedido>(this.API + "?id=" + id, pedido);
   }
 
-  async delete(id: number): Promise<Observable<Pedido>> {
+  delete(id: number): Observable<Pedido> {
     return this.http.delete<Pedido>(this.API + "?id=" + id);
   }
 }
