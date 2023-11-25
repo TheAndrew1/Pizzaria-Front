@@ -18,27 +18,21 @@ export class ProdutosPedidoListComponent {
 
   produtoService = inject(ProdutoService);
 
+  idSelecionado!: number;
   produtoSelecionado!: Produto;
 
   constructor() {
     
 	}
 
-  async delete(id: number){
-    await this.produtoService.delete(id)
-      .then(promise => promise.subscribe({
-        next: response => {
-        },
-        error: erro => console.log(erro)
-      }))
-      .then(() => {
-        this.modalService.dismissAll();
-      })
+  remove(){
+    this.pedido.produtos.splice(this.idSelecionado, 1)
   }
 
-  openModal(content: any, produto?: Produto) {
-    if(produto){
+  openModal(content: any, produto?: Produto, id?: number) {
+    if(produto && id){
       this.produtoSelecionado = produto;
+      this.idSelecionado = id;
     }
 
 		this.modalService.open(content, { centered: true, size: 'xl', scrollable: true });

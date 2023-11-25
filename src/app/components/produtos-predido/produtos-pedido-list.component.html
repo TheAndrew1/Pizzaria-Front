@@ -16,7 +16,7 @@
 			<td><ngb-highlight [result]="produto.nome" [term]="control.value"></ngb-highlight></td>
 			<td>{{ produto.valor }}</td>
 			<td class="row justify-content-around">
-				<button type="button" class="btn btn-danger col-5" (click)="openModal(deleteModal, produto)">
+				<button type="button" class="btn btn-danger col-5" (click)="openModal(deleteModal, produto, i)">
                     <span class="material-symbols-outlined">delete</span>
                 </button>
 			</td>
@@ -43,7 +43,7 @@
 		<p>Tem certeza que deseja remover o produto <strong><em>{{ produtoSelecionado.nome }}</em></strong> ?</p>
 	</div>
 	<div class="modal-footer justify-content-between">
-		<button type="button" class="btn btn-outline-danger col-2" (click)="delete(produtoSelecionado.id)">Excluir</button>
+		<button type="button" class="btn btn-outline-danger col-2" (click)="remove()">Remover</button>
 		<button type="button" class="btn btn-outline-secondary col-2" (click)="modal.close('Close click')">Fechar</button>
 	</div>
 </ng-template>
