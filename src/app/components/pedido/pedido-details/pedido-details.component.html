@@ -23,6 +23,15 @@
             <option value=2>Debito</option>
         </select>
     </div>
+    <div class="mb-3" *ngIf="tipo == 'edit'">
+        <label for="situacao" class="form-label">Situação do pedido:</label>
+        <select class="form-select" id="situacao" aria-label="Situação do pedido" [(ngModel)]="pedido.situacao" name="situacao">
+            <option value=0>Cancelado</option>
+            <option value=1>Preparo</option>
+            <option value=2>Entrega</option>
+            <option value=3>Finalizado</option>
+        </select>
+    </div>
 
     <button type="submit" class="btn btn-primary" (click)="salvar()" *ngIf="tipo == 'new'">Finalizar</button>
     <button type="submit" class="btn btn-primary" (click)="salvar()" *ngIf="tipo == 'edit'">Salvar</button>
