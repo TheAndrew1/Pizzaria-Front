@@ -48,12 +48,12 @@ export class ClienteListComponent {
     if(this.control.value == ""){
       this.clientes$ = this.clientes
     }else{
-      this.clientes$ = this.clientes.filter(sabor => sabor.nome.includes(this.control.value));
+      this.clientes$ = this.clientes.filter(cliente => cliente.nome.includes(this.control.value));
     }
   }
 
-  openModal(content: any, sabor: Cliente) {
-    this.clienteSelecionado = sabor;
+  openModal(content: any, cliente: Cliente) {
+    this.clienteSelecionado = cliente;
 
 		this.modalService.open(content, { centered: true });
 	}

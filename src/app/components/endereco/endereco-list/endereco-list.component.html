@@ -1,1 +1,48 @@
-<p>endereco-list works!</p>
+<form>
+	<div class="my-3 row justify-content-between">
+		<div class="col-xs-3 col-sm-auto">
+			<input id="table-filtering-search" class="form-control" type="text" autocomplete="off" [formControl]="control" name="busca" (ngModelChange)="filter()" placeholder="Buscar..."/>
+		</div>
+		<div class="col-xs-3 col-sm-auto">
+			<button type="button" class="btn btn-primary" [routerLink]="['/enderecos/form']" [queryParams]="{type: 'new'}">Adicionar</button>
+		</div>
+	</div>
+</form>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Bairro</th>
+            <th scope="col">Rua</th>
+            <th scope="col">Nº</th>
+            <th scope="col" colspan="2">Opções</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let endereco of enderecos$; index as i">
+			<th scope="row">{{ i + 1 }}</th>
+            <td>{{ enderecoSelecionado.bairro }}</td>
+			<td><ngb-highlight [result]="endereco.rua" [term]="control.value"></ngb-highlight></td>
+            <td>{{ enderecoSelecionado.numero }}</td>
+			<td class="row justify-content-around">
+				<button type="button" class="btn btn-info col-3" [routerLink]="['/enderecos/form']" [queryParams]="{id: endereco.id, type: 'edit'}">Editar</button>
+				<button type="button" class="btn btn-danger col-3" (click)="openModal(excluir, endereco)">Excluir</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<ng-template #excluir let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Excluir endereco</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>Tem certeza que deseja excluir o endereco <strong><em>{{ enderecoSelecionado.bairro }}, {{ enderecoSelecionado.rua }} {{ enderecoSelecionado.numero }}</em></strong> ?</p>
+	</div>
+	<div class="modal-footer justify-content-between">
+		<button type="button" class="btn btn-outline-danger col-2" (click)="delete(enderecoSelecionado.id)">Excluir</button>
+		<button type="button" class="btn btn-outline-secondary col-2" (click)="modal.close('Close click')">Fechar</button>
+	</div>
+</ng-template>

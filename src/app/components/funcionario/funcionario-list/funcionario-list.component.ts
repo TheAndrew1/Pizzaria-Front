@@ -48,12 +48,12 @@ export class FuncionarioListComponent {
     if(this.control.value == ""){
       this.funcionarios$ = this.funcionarios
     }else{
-      this.funcionarios$ = this.funcionarios.filter(sabor => sabor.nome.includes(this.control.value));
+      this.funcionarios$ = this.funcionarios.filter(funcionario => funcionario.nome.includes(this.control.value));
     }
   }
 
-  openModal(content: any, sabor: Funcionario) {
-    this.funcionarioSelecionado = sabor;
+  openModal(content: any, funcionario: Funcionario) {
+    this.funcionarioSelecionado = funcionario;
 
 		this.modalService.open(content, { centered: true });
 	}
