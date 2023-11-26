@@ -22,6 +22,8 @@ import { FuncionarioDetailsComponent } from './components/funcionario/funcionari
 import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
 import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
 import { ClienteDetailsComponent } from './components/cliente/cliente-details/cliente-details.component';
+import { EnderecoListComponent } from './components/endereco/endereco-list/endereco-list.component';
+import { EnderecoDetailsComponent } from './components/endereco/endereco-details/endereco-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ClienteDetailsComponent } from './components/cliente/cliente-details/cl
     FuncionarioDetailsComponent,
     FuncionarioListComponent,
     ClienteListComponent,
-    ClienteDetailsComponent
+    ClienteDetailsComponent,
+    EnderecoListComponent,
+    EnderecoDetailsComponent
   ],
   imports: [
     BrowserModule,
