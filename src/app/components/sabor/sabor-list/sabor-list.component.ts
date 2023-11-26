@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { SaborService } from '../../../services/sabor/sabor.service';
 import { Sabor } from '../../../models/saborModel';
 import { FormControl } from '@angular/forms';
@@ -13,6 +13,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class SaborListComponent {
   control = new FormControl('', { nonNullable: true });
   modalService = inject(NgbModal);
+
+  @Input() produto!: boolean;
+  @Output() retorno = new EventEmitter<Sabor>();
 
   saborService = inject(SaborService);
 
@@ -58,4 +61,8 @@ export class SaborListComponent {
 
 		this.modalService.open(content, { centered: true });
 	}
+
+  select(sabor: Sabor){
+    this.retorno.emit(sabor);
+  }
 }

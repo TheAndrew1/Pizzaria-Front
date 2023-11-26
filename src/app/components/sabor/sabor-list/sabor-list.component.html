@@ -4,7 +4,7 @@
 			<input id="table-filtering-search" class="form-control" type="text" autocomplete="off" [formControl]="control" name="busca" (ngModelChange)="filter()" placeholder="Buscar..."/>
 		</div>
 		<div class="col-xs-3 col-sm-auto">
-			<button type="button" class="btn btn-primary" [routerLink]="['/sabores/form']" [queryParams]="{type: 'new'}">Adicionar</button>
+			<button type="button" class="btn btn-primary" [routerLink]="['/sabores/form']" [queryParams]="{type: 'new'}" *ngIf="!produto">Adicionar</button>
 		</div>
 	</div>
 </form>
@@ -25,15 +25,18 @@
 			<td><ngb-highlight [result]="sabor.nome" [term]="control.value"></ngb-highlight></td>
 			<td>{{ sabor.descricao }}</td>
 			<td>{{ sabor.valor }}</td>
-			<td class="row justify-content-around">
+			<td class="row justify-content-around" *ngIf="!produto">
 				<button type="button" class="btn btn-info col-3" [routerLink]="['/sabores/form']" [queryParams]="{id: sabor.id, type: 'edit'}">Editar</button>
-				<button type="button" class="btn btn-danger col-3" (click)="openModal(content, sabor)">Excluir</button>
+				<button type="button" class="btn btn-danger col-3" (click)="openModal(excluir, sabor)">Excluir</button>
+			</td>
+			<td class="row justify-content-center" *ngIf="produto">
+				<button type="button" class="btn btn-outline-primary" (click)="select(sabor)">Selecionar</button>
 			</td>
 		</tr>
 	</tbody>
 </table>
 
-<ng-template #content let-modal>
+<ng-template #excluir let-modal>
 	<div class="modal-header">
 		<h4 class="modal-title">Excluir sabor</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>

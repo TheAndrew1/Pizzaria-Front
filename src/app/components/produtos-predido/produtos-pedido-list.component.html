@@ -13,10 +13,16 @@
 	<tbody>
 		<tr *ngFor="let produto of pedido.produtos; index as i">
 			<th scope="row">{{ i + 1 }}</th>
-			<td><ngb-highlight [result]="produto.nome" [term]="control.value"></ngb-highlight></td>
-			<td>{{ produto.valor }}</td>
-			<td class="row justify-content-around">
-				<button type="button" class="btn btn-danger col-5" (click)="openModal(deleteModal, produto, i)">
+			<td>
+				<ngb-highlight [result]="produto.nome" [term]="control.value"></ngb-highlight>
+				<ul>
+					<li *ngFor="let sabor of produto.sabores">{{ sabor.nome }}</li>
+				</ul>
+				<small *ngIf="produto.observacao">Obs: {{ produto.observacao }}</small>
+			</td>
+			<td>R$ {{ produto.valor }}</td>
+			<td>
+				<button type="button" class="btn btn-danger col-5 w-100" (click)="removeItem(i)">
                     <span class="material-symbols-outlined">delete</span>
                 </button>
 			</td>
@@ -33,20 +39,6 @@
 		</div>
 	</div>
 </form>
-
-<ng-template #deleteModal let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title">Remover produto</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-		<p>Tem certeza que deseja remover o produto <strong><em>{{ produtoSelecionado.nome }}</em></strong> ?</p>
-	</div>
-	<div class="modal-footer justify-content-between">
-		<button type="button" class="btn btn-outline-danger col-2" (click)="removeItem()">Remover</button>
-		<button type="button" class="btn btn-outline-secondary col-2" (click)="modal.close('Close click')">Fechar</button>
-	</div>
-</ng-template>
 
 <ng-template #addModal let-modal>
 	<div class="modal-header">

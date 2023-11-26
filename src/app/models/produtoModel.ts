@@ -8,4 +8,8 @@ export class Produto{
     valor!: number;
     observacao!: string;
     sabores!: Array<Sabor>;
+
+    constructor(){
+        this.sabores = new Array<Sabor>();
+    }
 }

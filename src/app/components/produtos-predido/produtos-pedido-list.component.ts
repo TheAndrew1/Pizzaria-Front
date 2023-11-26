@@ -18,19 +18,9 @@ export class ProdutosPedidoListComponent {
 
   produtoService = inject(ProdutoService);
 
-  idSelecionado!: number;
-  produtoSelecionado!: Produto;
+  constructor() { }
 
-  constructor() {
-    
-	}
-
-  openModal(content: any, produto?: Produto, id?: number) {
-    if(produto && id){
-      this.produtoSelecionado = produto;
-      this.idSelecionado = id;
-    }
-
+  openModal(content: any) {
 		this.modalService.open(content, { centered: true, size: 'xl', scrollable: true });
 	}
 
@@ -39,8 +29,8 @@ export class ProdutosPedidoListComponent {
     this.pedido.valor = this.sumProdutos();
   }
 
-  removeItem(){
-    this.pedido.produtos.splice(this.idSelecionado, 1);
+  removeItem(id: number){
+    this.pedido.produtos.splice(id, 1);
     this.pedido.valor = this.sumProdutos();
     this.modalService.dismissAll();
   }

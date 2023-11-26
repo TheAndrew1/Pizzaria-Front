@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Produto } from 'src/app/models/produtoModel';
+import { Sabor } from 'src/app/models/saborModel';
 import { ProdutoService } from 'src/app/services/produto/produto.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { ProdutoService } from 'src/app/services/produto/produto.service';
 export class ProdutoListComponent {
   control = new FormControl('', { nonNullable: true });
   modalService = inject(NgbModal);
+  modal = new NgbActiveModal();
 
   produtoService = inject(ProdutoService);
 
@@ -26,6 +28,8 @@ export class ProdutoListComponent {
 
   constructor() {
     this.findAll();
+    this.pizza = new Produto()
+    this.pizza.nome = "Pizza";
 	}
 
   findAll(){
@@ -61,8 +65,19 @@ export class ProdutoListComponent {
   }
 
   select(produto: Produto){
-    this.retorno.emit(produto);
-    this.modalService.dismissAll();
+    if(produto.sabores.length != 0){
+      this.produtoService.create(produto).subscribe({
+        next: produtoCadastrado => { 
+          produto.id = produtoCadastrado.id;
+          this.retorno.emit(produto);
+          this.modalService.dismissAll();
+        },
+        error: erro => { console.log(erro) }
+      });
+    }else{
+      this.retorno.emit(produto);
+      this.modalService.dismissAll();
+    }
   }
 
   openModal(content: any, produto?: Produto) {
@@ -70,6 +85,28 @@ export class ProdutoListComponent {
       this.produtoSelecionado = produto;
     }
 
-		this.modalService.open(content, { centered: true });
+		this.modal = this.modalService.open(content, { centered: true });
 	}
+
+  toNumber(numero: any): number{
+    return Number(numero);
+  }
+
+  sumValue(): number{
+    let soma = 0 as number;
+    this.pizza.sabores.forEach(sabor => soma += sabor.valor);
+
+    return soma;
+  }
+
+  addSabor(sabor: Sabor){
+    this.modal.close();
+    this.pizza.sabores.push(sabor);
+    this.pizza.valor = this.sumValue();
+  }
+
+  removeSabor(id: number){
+    this.pizza.sabores.splice(id, 1);
+    this.pizza.valor = this.sumValue();
+  }
 }
