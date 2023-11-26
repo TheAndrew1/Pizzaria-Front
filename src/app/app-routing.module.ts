@@ -9,6 +9,8 @@ import { PedidoListComponent } from './components/pedido/pedido-list/pedido-list
 import { PedidoDetailsComponent } from './components/pedido/pedido-details/pedido-details.component';
 import { LoginComponent } from './components/sistema/login/login.component';
 import { CadastroComponent } from './components/sistema/cadastro/cadastro.component';
+import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
+import { FuncionarioDetailsComponent } from './components/funcionario/funcionario-details/funcionario-details.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "home", pathMatch: "full"},
@@ -20,7 +22,13 @@ const routes: Routes = [
   {path: "produtos", component: ProdutoListComponent},
   {path: "produtos/form", component: ProdutoDetailsComponent},
   {path: "pedidos", component: PedidoListComponent},
-  {path: "pedidos/form", component: PedidoDetailsComponent}
+  {path: "pedidos/form", component: PedidoDetailsComponent},
+  {path: "funcionarios", component: FuncionarioListComponent},
+  {path: "funcionarios/form", component: FuncionarioDetailsComponent},
+  {path: "clientes", component: FuncionarioListComponent},
+  {path: "clientes/form", component: FuncionarioDetailsComponent},
+  {path: "enderecos", component: FuncionarioListComponent},
+  {path: "enderecos/form", component: FuncionarioDetailsComponent}
 ];
 
 @NgModule({
