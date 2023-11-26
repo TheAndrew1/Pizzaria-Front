@@ -1,1 +1,19 @@
-<p>endereco-details works!</p>
+<form class="container my-3 col-4">
+    <h2 *ngIf="tipo == 'new'">Adicionar endereço</h2>
+    <h2 *ngIf="tipo == 'edit'">Editar endereço</h2>
+
+    <div class="mb-3">
+        <label for="bairro" class="form-label">Bairro:</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" [(ngModel)]="endereco.bairro" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="rua" class="form-label">Rua:</label>
+        <input type="text" class="form-control" id="rua" name="rua" [(ngModel)]="endereco.rua" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="numero" class="form-label">Número:</label>
+        <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="endereco.numero" autocomplete="off">
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+</form>
