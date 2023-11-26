@@ -1,1 +1,24 @@
-<p>funcionario-details works!</p>
+<form class="container my-3 col-4">
+    <h2 *ngIf="tipo == 'new'">Adicionar funcionario</h2>
+    <h2 *ngIf="tipo == 'edit'">Editar funcionario</h2>
+
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="funcionario.nome" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="login" class="form-label">Login:</label>
+        <input type="text" class="form-control" id="login" name="login" [(ngModel)]="funcionario.login" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="senha" class="form-label">Senha:</label>
+        <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" id="senha" name="senha" [(ngModel)]="funcionario.senha" autocomplete="off">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="showPassword" id="showPassword" name="showPassword">
+          <label class="form-check-label" for="showPassword">
+            Mostrar senha
+          </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+</form>
