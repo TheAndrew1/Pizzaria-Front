@@ -11,6 +11,8 @@ import { LoginComponent } from './components/sistema/login/login.component';
 import { CadastroComponent } from './components/sistema/cadastro/cadastro.component';
 import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
 import { FuncionarioDetailsComponent } from './components/funcionario/funcionario-details/funcionario-details.component';
+import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
+import { ClienteDetailsComponent } from './components/cliente/cliente-details/cliente-details.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "home", pathMatch: "full"},
@@ -25,8 +27,8 @@ const routes: Routes = [
   {path: "pedidos/form", component: PedidoDetailsComponent},
   {path: "funcionarios", component: FuncionarioListComponent},
   {path: "funcionarios/form", component: FuncionarioDetailsComponent},
-  {path: "clientes", component: FuncionarioListComponent},
-  {path: "clientes/form", component: FuncionarioDetailsComponent},
+  {path: "clientes", component: ClienteListComponent},
+  {path: "clientes/form", component: ClienteDetailsComponent},
   {path: "enderecos", component: FuncionarioListComponent},
   {path: "enderecos/form", component: FuncionarioDetailsComponent}
 ];

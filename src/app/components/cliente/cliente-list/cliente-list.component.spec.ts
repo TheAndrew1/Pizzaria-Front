@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FuncionarioDetailsComponent } from './funcionario-details.component';
+import { ClienteListComponent } from './cliente-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('FuncionarioDetailsComponent', () => {
-  let component: FuncionarioDetailsComponent;
-  let fixture: ComponentFixture<FuncionarioDetailsComponent>;
+describe('ClienteListComponent', () => {
+  let component: ClienteListComponent;
+  let fixture: ComponentFixture<ClienteListComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FuncionarioDetailsComponent],
+      declarations: [ClienteListComponent],
       imports: [HttpClientTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     });
-    fixture = TestBed.createComponent(FuncionarioDetailsComponent);
+    fixture = TestBed.createComponent(ClienteListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

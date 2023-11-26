@@ -1,0 +1,44 @@
+<form>
+	<div class="my-3 row justify-content-between">
+		<div class="col-xs-3 col-sm-auto">
+			<input id="table-filtering-search" class="form-control" type="text" autocomplete="off" [formControl]="control" name="busca" (ngModelChange)="filter()" placeholder="Buscar..."/>
+		</div>
+		<div class="col-xs-3 col-sm-auto">
+			<button type="button" class="btn btn-primary" [routerLink]="['/clientes/form']" [queryParams]="{type: 'new'}">Adicionar</button>
+		</div>
+	</div>
+</form>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nome</th>
+            <th scope="col" colspan="2">Opções</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let cliente of clientes$; index as i">
+			<th scope="row">{{ i + 1 }}</th>
+			<td><ngb-highlight [result]="cliente.nome" [term]="control.value"></ngb-highlight></td>
+			<td class="row justify-content-around">
+				<button type="button" class="btn btn-info col-3" [routerLink]="['/clientes/form']" [queryParams]="{id: cliente.id, type: 'edit'}">Editar</button>
+				<button type="button" class="btn btn-danger col-3" (click)="openModal(excluir, cliente)">Excluir</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<ng-template #excluir let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Excluir cliente</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>Tem certeza que deseja excluir o cliente <strong><em>{{ clienteSelecionado.nome }}</em></strong> ?</p>
+	</div>
+	<div class="modal-footer justify-content-between">
+		<button type="button" class="btn btn-outline-danger col-2" (click)="delete(clienteSelecionado.id)">Excluir</button>
+		<button type="button" class="btn btn-outline-secondary col-2" (click)="modal.close('Close click')">Fechar</button>
+	</div>
+</ng-template>

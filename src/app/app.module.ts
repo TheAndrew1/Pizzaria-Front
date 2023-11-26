@@ -20,6 +20,8 @@ import { LoginComponent } from './components/sistema/login/login.component';
 import { CadastroComponent } from './components/sistema/cadastro/cadastro.component';
 import { FuncionarioDetailsComponent } from './components/funcionario/funcionario-details/funcionario-details.component';
 import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
+import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
+import { ClienteDetailsComponent } from './components/cliente/cliente-details/cliente-details.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { FuncionarioListComponent } from './components/funcionario/funcionario-l
     LoginComponent,
     CadastroComponent,
     FuncionarioDetailsComponent,
-    FuncionarioListComponent
+    FuncionarioListComponent,
+    ClienteListComponent,
+    ClienteDetailsComponent
   ],
   imports: [
     BrowserModule,
