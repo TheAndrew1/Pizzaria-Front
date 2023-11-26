@@ -42,15 +42,13 @@ export class SaborDetailsComponent {
         next: response => this.sabor = response,
         error: erro => console.log(erro)
       })
-        
-      this.router.navigate(["/sabores"]);
     }else{
       this.saborService.edit(this.id, this.sabor).subscribe({
         next: response => this.sabor = response,
         error: erro => console.log(erro)
       })
-        
-      this.router.navigate(["/sabores"]);
     }
+
+    this.router.navigate(["/sabores"]);
   }
 }

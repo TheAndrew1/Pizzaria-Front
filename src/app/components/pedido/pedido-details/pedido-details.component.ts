@@ -41,15 +41,13 @@ export class PedidoDetailsComponent {
         next: response => this.pedido = response,
         error: erro => console.log(erro)
       })
-      
-      this.router.navigate(["/pedidos"]);
     }else{
       this.pedidoService.edit(this.id, this.pedido).subscribe({
         next: response => this.pedido = response,
         error: erro => console.log(erro)
       })
-      
-      this.router.navigate(["/pedidos"]);
     }
+
+    this.router.navigate(["/pedidos"]);
   }
 }

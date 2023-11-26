@@ -41,15 +41,13 @@ export class ProdutoDetailsComponent {
         next: response => this.produto = response,
         error: erro => console.log(erro)
       })
-
-      this.router.navigate(["/produtos"]);
     }else{
       this.produtoService.edit(this.id, this.produto).subscribe({
         next: response => this.produto = response,
         error: erro => console.log(erro)
       })
-      
-      this.router.navigate(["/produtos"]);
     }
+
+    this.router.navigate(["/produtos"]);
   }
 }
