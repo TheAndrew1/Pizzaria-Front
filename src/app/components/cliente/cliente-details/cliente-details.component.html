@@ -24,5 +24,9 @@
           </label>
         </div>
     </div>
+    <div class="mb-3">
+        <h5 for="nome" class="form-label">Endereços do cliente:</h5>
+        <app-endereco-list [cliente]="cliente"></app-endereco-list>
+    </div>
     <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
 </form>

@@ -1,13 +1,5 @@
-<form>
-	<div class="my-3 row justify-content-between">
-		<div class="col-xs-3 col-sm-auto">
-			<input id="table-filtering-search" class="form-control" type="text" autocomplete="off" [formControl]="control" name="busca" (ngModelChange)="filter()" placeholder="Buscar..."/>
-		</div>
-		<div class="col-xs-3 col-sm-auto">
-			<button type="button" class="btn btn-primary" [routerLink]="['/enderecos/form']" [queryParams]="{type: 'new'}">Adicionar</button>
-		</div>
-	</div>
-</form>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <table class="table table-striped">
 	<thead>
@@ -20,29 +12,38 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let endereco of enderecos$; index as i">
+		<tr *ngFor="let endereco of cliente.enderecos; index as i">
 			<th scope="row">{{ i + 1 }}</th>
             <td>{{ endereco.bairro }}</td>
 			<td><ngb-highlight [result]="endereco.rua" [term]="control.value"></ngb-highlight></td>
             <td>{{ endereco.numero }}</td>
-			<td class="row justify-content-around">
-				<button type="button" class="btn btn-info col-3" [routerLink]="['/enderecos/form']" [queryParams]="{id: endereco.id, type: 'edit'}">Editar</button>
-				<button type="button" class="btn btn-danger col-3" (click)="openModal(excluir, endereco)">Excluir</button>
+			<td>
+				<button type="button" class="btn btn-danger col-5 w-100" (click)="removeEndereco(endereco.id)">
+					<span class="material-symbols-outlined">delete</span>
+				</button>
 			</td>
 		</tr>
 	</tbody>
 </table>
 
-<ng-template #excluir let-modal>
+<form>
+	<div class="my-3 row justify-content-between">
+		<div class="col-xs-3 col-sm-auto">
+			<button type="button" class="btn btn-info" (click)="openModal(addModal)">
+                <span class="material-symbols-outlined">add</span>
+            </button>
+		</div>
+	</div>
+</form>
+
+<ng-template #addModal let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title">Excluir endereço</h4>
+		<h4 class="modal-title">Adicionar endereço</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-		<p>Tem certeza que deseja excluir o endereço <strong><em>{{ enderecoSelecionado.bairro }}, {{ enderecoSelecionado.rua }} {{ enderecoSelecionado.numero }}</em></strong> ?</p>
+		<app-endereco-details (retorno)="addEndereco($event)"></app-endereco-details>
 	</div>
-	<div class="modal-footer justify-content-between">
-		<button type="button" class="btn btn-outline-danger col-2" (click)="delete(enderecoSelecionado.id)">Excluir</button>
-		<button type="button" class="btn btn-outline-secondary col-2" (click)="modal.close('Close click')">Fechar</button>
+	<div class="modal-footer">
 	</div>
 </ng-template>

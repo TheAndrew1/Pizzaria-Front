@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Cliente } from 'src/app/models/clienteModel';
 import { Endereco } from 'src/app/models/enderecoModel';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 
@@ -13,48 +14,28 @@ export class EnderecoListComponent {
   control = new FormControl('', { nonNullable: true });
   modalService = inject(NgbModal);
 
+  @Input() cliente!: Cliente;
+
   enderecoService = inject(EnderecoService);
 
-  enderecos: Array<Endereco> = new Array<Endereco>();
-  enderecos$?: Array<Endereco>;
+  constructor() { }
 
-  enderecoSelecionado!: Endereco;
-
-  constructor() {
-    this.findAll();
-	}
-
-  findAll(){
-    this.enderecoService.findAll().subscribe({
-      next: response => {this.enderecos = response;
-                        this.enderecos$ = this.enderecos},
-      error: erro => console.log(erro)
-    });
+  addEndereco(endereco: Endereco){
+    this.cliente.enderecos.push(endereco);
   }
 
-  delete(id: number){
-    this.enderecoService.delete(id)
+  removeEndereco(id: number){
+    this.cliente.enderecos.splice(id, 1);
+    this.enderecoService.delete(id-1)
       .subscribe({
-        next: response => {
-          this.findAll();
-        },
+        next: response => {},
         error: erro => console.log(erro)
       })
 
     this.modalService.dismissAll();
   }
 
-  filter(){
-    if(this.control.value == ""){
-      this.enderecos$ = this.enderecos
-    }else{
-      this.enderecos$ = this.enderecos.filter(sabor => sabor.rua.includes(this.control.value));
-    }
-  }
-
-  openModal(content: any, sabor: Endereco) {
-    this.enderecoSelecionado = sabor;
-
-		this.modalService.open(content, { centered: true });
+  openModal(content: any) {
+		this.modalService.open(content, { centered: true, size: "md" });
 	}
 }
