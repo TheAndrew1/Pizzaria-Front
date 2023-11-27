@@ -3,6 +3,14 @@
     <h2 *ngIf="tipo == 'edit'">Editar pedido</h2>
 
     <div class="mb-3">
+        <label for="cliente" class="form-label">Selecionar cliente:</label>
+
+        <input class="form-control" list="clientes" placeholder="Nome do cliente" aria-label="Cliente" [(ngModel)]="clienteId" id="cliente" name="cliente" autocomplete="off">
+        <datalist id="clientes">
+          <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nome }}</option>
+        </datalist>
+    </div>
+    <div class="mb-3">
         <h5 for="nome" class="form-label">Itens do pedido:</h5>
         <app-produtos-pedido-list [pedido]="pedido"></app-produtos-pedido-list>
     </div>
@@ -10,6 +18,34 @@
     <div class="form-check mb-3">
         <input class="form-check-input" type="checkbox" id="entrega" [(ngModel)]="pedido.entrega" name="entrega">
         <label class="form-check-label" for="entrega">Necessita entrega ?</label>
+    </div>
+    <div class="mb-3 row justify-content-between" *ngIf="pedido.entrega">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Bairro</th>
+                    <th scope="col">Rua</th>
+                    <th scope="col">Nº</th>
+                    <th scope="col" colspan="2">Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="pedido.endereco">
+                    <th scope="row">-</th>
+                    <td>{{ pedido.endereco.bairro }}</td>
+                    <td>{{ pedido.endereco.rua }}</td>
+                    <td>{{ pedido.endereco.numero }}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger col-5 w-100" (click)="removeEndereco(pedido.endereco.id)">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-outline-info col-4" *ngIf="pedido.cliente.id">Selecionar do cliente</button>
+        <button type="button" class="btn btn-outline-primary col-4" (click)="openModal(addModal)">Adicionar endereço</button>
     </div>
     <div class="mb-3">
         <label for="valor" class="form-label">Valor do pedido:</label>
@@ -36,3 +72,15 @@
     <button type="submit" class="btn btn-primary" (click)="salvar()" *ngIf="tipo == 'new'">Finalizar</button>
     <button type="submit" class="btn btn-primary" (click)="salvar()" *ngIf="tipo == 'edit'">Salvar</button>
 </form>
+
+<ng-template #addModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Adicionar endereço</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<app-endereco-details (retorno)="addEndereco($event)"></app-endereco-details>
+	</div>
+	<div class="modal-footer">
+	</div>
+</ng-template>
