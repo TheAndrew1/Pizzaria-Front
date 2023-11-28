@@ -3,4 +3,6 @@ export class Funcionario{
     nome!: string;
     login!: string;
     senha!: string;
+    role!: string;
+    token!: string;
 }

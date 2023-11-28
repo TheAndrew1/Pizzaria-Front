@@ -24,6 +24,8 @@ import { ClienteListComponent } from './components/cliente/cliente-list/cliente-
 import { ClienteDetailsComponent } from './components/cliente/cliente-details/cliente-details.component';
 import { EnderecoListComponent } from './components/endereco/endereco-list/endereco-list.component';
 import { EnderecoDetailsComponent } from './components/endereco/endereco-details/endereco-details.component';
+import { httpInterceptorProviders } from './interceptors/http-interceptor.service';
+import { LoginService } from './services/login/login.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { EnderecoDetailsComponent } from './components/endereco/endereco-details
     FormsModule,
     ReactiveFormsModule 
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders, LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

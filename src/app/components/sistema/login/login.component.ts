@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { Login } from 'src/app/models/loginModel';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -6,5 +9,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  loginService = inject(LoginService);
+  login: Login = new Login();
+  roteador = inject(Router);
 
+  constructor() {
+    //remover o token aqui
+    this.loginService.removeToken();
+  }
+
+  logar() {
+    //implementar a requisição aqui e colocar o token no localstorage
+    this.loginService.logar(this.login).subscribe({
+      next: usuario => {
+        localStorage.setItem("token", usuario.token);
+        this.roteador.navigate(['admin/produtos']);
+    },
+      error: erro => {
+        console.log(erro);
+      }
+    });
+  }
 }

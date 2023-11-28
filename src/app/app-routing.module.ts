@@ -17,7 +17,7 @@ import { EnderecoListComponent } from './components/endereco/endereco-list/ender
 import { EnderecoDetailsComponent } from './components/endereco/endereco-details/endereco-details.component';
 
 const routes: Routes = [
-  {path:"", redirectTo: "home", pathMatch: "full"},
+  {path:"", redirectTo: "login", pathMatch: "full"},
   {path: "home", component: IndexComponent},
   {path: "login", component: LoginComponent},
   {path: "cadastro", component: CadastroComponent},
