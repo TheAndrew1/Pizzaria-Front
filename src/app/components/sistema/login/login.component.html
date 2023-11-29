@@ -1,17 +1,17 @@
 <form>
     <div class="mb-3 col-3">
         <label for="exampleInputEmail1" class="form-label">E-mail:</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off">
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="login" [(ngModel)]="login.login" autocomplete="off">
     </div>
     <div class="mb-3 col-3">
         <label for="exampleInputPassword1" class="form-label">Senha:</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" autocomplete="off">
+        <input type="password" class="form-control" id="exampleInputPassword1" name="senha" [(ngModel)]="login.senha" autocomplete="off">
     </div>
     <!-- <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Mostrar senha</label>
     </div> -->
     <div class="col-xs-3 col-sm-auto">
-        <button type="button" class="btn btn-primary" [routerLink]="['/home']">Entrar</button>
+        <button type="button" class="btn btn-primary" (click)="logar()">Entrar</button>
     </div>
 </form>

@@ -15,24 +15,25 @@ import { ClienteListComponent } from './components/cliente/cliente-list/cliente-
 import { ClienteDetailsComponent } from './components/cliente/cliente-details/cliente-details.component';
 import { EnderecoListComponent } from './components/endereco/endereco-list/endereco-list.component';
 import { EnderecoDetailsComponent } from './components/endereco/endereco-details/endereco-details.component';
+import { rotaGuard } from './guards/rota.guard';
 
 const routes: Routes = [
   {path:"", redirectTo: "login", pathMatch: "full"},
-  {path: "home", component: IndexComponent},
+  {path: "home", component: IndexComponent, canActivate: [rotaGuard]},
   {path: "login", component: LoginComponent},
   {path: "cadastro", component: CadastroComponent},
-  {path: "sabores", component: SaborListComponent},
-  {path: "sabores/form", component: SaborDetailsComponent},
-  {path: "produtos", component: ProdutoListComponent},
-  {path: "produtos/form", component: ProdutoDetailsComponent},
-  {path: "pedidos", component: PedidoListComponent},
-  {path: "pedidos/form", component: PedidoDetailsComponent},
-  {path: "funcionarios", component: FuncionarioListComponent},
-  {path: "funcionarios/form", component: FuncionarioDetailsComponent},
-  {path: "clientes", component: ClienteListComponent},
-  {path: "clientes/form", component: ClienteDetailsComponent},
-  {path: "enderecos", component: EnderecoListComponent},
-  {path: "enderecos/form", component: EnderecoDetailsComponent}
+  {path: "sabores", component: SaborListComponent, canActivate: [rotaGuard]},
+  {path: "sabores/form", component: SaborDetailsComponent, canActivate: [rotaGuard]},
+  {path: "produtos", component: ProdutoListComponent, canActivate: [rotaGuard]},
+  {path: "produtos/form", component: ProdutoDetailsComponent, canActivate: [rotaGuard]},
+  {path: "pedidos", component: PedidoListComponent, canActivate: [rotaGuard]},
+  {path: "pedidos/form", component: PedidoDetailsComponent, canActivate: [rotaGuard]},
+  {path: "funcionarios", component: FuncionarioListComponent, canActivate: [rotaGuard]},
+  {path: "funcionarios/form", component: FuncionarioDetailsComponent, canActivate: [rotaGuard]},
+  {path: "clientes", component: ClienteListComponent, canActivate: [rotaGuard]},
+  {path: "clientes/form", component: ClienteDetailsComponent, canActivate: [rotaGuard]},
+  {path: "enderecos", component: EnderecoListComponent, canActivate: [rotaGuard]},
+  {path: "enderecos/form", component: EnderecoDetailsComponent, canActivate: [rotaGuard]}
 ];
 
 @NgModule({
