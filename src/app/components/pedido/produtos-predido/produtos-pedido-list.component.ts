@@ -18,7 +18,7 @@ export class ProdutosPedidoListComponent {
 
   produtoService = inject(ProdutoService);
 
-  constructor() { }
+  constructor() { this.pedido = new Pedido() }
 
   openModal(content: any) {
 		this.modalService.open(content, { centered: true, size: 'xl', scrollable: true });

@@ -18,7 +18,9 @@ export class EnderecoListComponent {
 
   enderecoService = inject(EnderecoService);
 
-  constructor() { }
+  constructor() { 
+    this.cliente = new Cliente();
+  }
 
   addEndereco(endereco: Endereco){
     this.cliente.enderecos.push(endereco);
