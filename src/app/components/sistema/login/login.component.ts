@@ -22,9 +22,7 @@ export class LoginComponent {
     //implementar a requisição aqui e colocar o token no localstorage
     this.loginService.logar(this.login).subscribe({
       next: usuario => {
-        console.log(usuario.token);
-        
-        localStorage.setItem("token", usuario.token);
+        this.loginService.addToken(usuario.id, usuario.token)
         this.roteador.navigate(['/home']);
     },
       error: erro => {

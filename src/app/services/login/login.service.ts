@@ -18,16 +18,23 @@ export class LoginService {
     return this.http.post<Funcionario>(this.API, login)
   }
 
-  deslogar(login: Login): Observable<any> {
+  deslogar(): Observable<any> {
+    this.removeToken();
     return this.http.get<any>(this.API + "/deslogar")
   }
 
-  addToken(token: string){
+  addToken(id: number, token: string){
+    localStorage.setItem("id", String(id));
     localStorage.setItem("token", token);
   }
 
   removeToken(){
+    localStorage.removeItem("id");
     localStorage.removeItem("token");
+  }
+
+  getId(){
+    return localStorage.getItem("id");
   }
 
   getToken(){

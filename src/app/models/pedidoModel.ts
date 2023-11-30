@@ -18,5 +18,6 @@ export class Pedido{
     constructor(){
         this.valor = 0;
         this.produtos = new Array<Produto>();
+        this.endereco = new Endereco();
     }
 }
