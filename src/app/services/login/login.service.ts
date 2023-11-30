@@ -9,7 +9,7 @@ import { Login } from 'src/app/models/loginModel';
 })
 export class LoginService {
   
-  API: string = "http://localhost:8080/api/login"
+  API: string = "http://54.162.172.208:8080/api/login"
   http = inject(HttpClient);
 
   constructor() { }
